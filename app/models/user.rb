@@ -6,4 +6,5 @@ class User < ApplicationRecord
     with: URI::MailTo::EMAIL_REGEXP
   }
   validates :password, presence: true, length: { in: 8..30 }
+  has_and_belongs_to_many :events
 end
