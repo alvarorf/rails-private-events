@@ -1,8 +1,8 @@
 <h3>Create a new event</h3>
-<%= simple_form_for @event, :html => {:class => "text-warning bg-info mb-3 p-3"} do |f| %>
+<%= simple_form_for @event, :html => {:class => "align-items-center mb-3 p-3"} do |f| %>
   <%= f.error_notification %>
-  <%= f.input :name, label: "Event name", placeholder: "Add name of event here..." %>
+  <%= f.input :name, label: "Event name", placeholder: "Add the event name here..." %>
   <%= f.input :date, label: "Event date" %>
-  <%= f.input :description, label: "Event Description", placeholder: "Add event description here..." %>
+  <%= f.input :description, label: "Event Description", placeholder: "Add the event description here..." %>
   <%= f.button :submit, class: "btn-success" %>
 <% end %>

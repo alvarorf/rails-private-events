@@ -9,7 +9,9 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 gem 'devise'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
+gem 'sprockets-rails'
 gem 'simple_form'
+gem 'bootstrap'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
