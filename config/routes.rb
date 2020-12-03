@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  resources :events
   root to: "events#index"
+  resources :events
   resources :users
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  get 'new_user', to: 'users#create'
+  delete 'logout', to: 'sessions#destroy'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

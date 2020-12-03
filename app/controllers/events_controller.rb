@@ -1,5 +1,9 @@
+include ApplicationHelper
 class EventsController < ApplicationController
+  #helper_method :require_user #, :require_same_user
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: %i[show index]
+  before_action :require_same_user, only: %i[edit update destroy]
 
   # GET /events
   # GET /events.json
@@ -10,6 +14,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @event = Event.find(params[:id])
   end
 
   # GET /events/new
@@ -24,7 +29,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
+    @event = current_user.events.build(event_params)
 
     respond_to do |format|
       if @event.save
@@ -69,6 +74,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.fetch(:event, {})
+      params.require(:event).permit(:name, :date, :location, :description)
     end
 end
