@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :attendances
   root to: "events#index"
   resources :events
   resources :users

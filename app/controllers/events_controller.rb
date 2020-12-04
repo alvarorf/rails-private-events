@@ -1,7 +1,7 @@
 include ApplicationHelper
 class EventsController < ApplicationController
-  #helper_method :require_user #, :require_same_user
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  helper_method :require_user, :require_same_user
+  before_action :set_event, only: %i[show edit update destroy]
   before_action :require_user, except: %i[show index]
   before_action :require_same_user, only: %i[edit update destroy]
 
@@ -23,8 +23,7 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /events
   # POST /events.json
@@ -67,13 +66,14 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def event_params
-      params.require(:event).permit(:name, :date, :location, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def event_params
+    params.require(:event).permit(:name, :date, :location, :description)
+  end
 end

@@ -1,32 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Password</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="container" >
+  <h1 class="text-center mt-5 mb-4">Members</h1>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.username %></td>
-        <td><%= user.email %></td>
-        <td><%= user.password %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="card text-center shadow mb-5 bg-white rounded">
+      <div class="card-header font-italic">
+        <%= link_to user.username, user, class: "link" %>
+      </div>
+      <div class="card-body">
+        <div><%= link_to gravatar_image_tag(user, size: 120), user %></div>
+        <div class="my-3">
+          <%= link_to 'View profile', user, class: "btn btn-primary" %>
+          <% if logged_in? %>
+            <% if user == current_user %>
+              <%= link_to 'Edit profile', edit_user_path(user), class: "btn btn-info" %>
+            <%end%>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        <small>Joined <%= time_ago_in_words(user.created_at) %> ago</small>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <br>
 
