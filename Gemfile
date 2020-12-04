@@ -12,6 +12,7 @@ gem 'sqlite3', '~> 1.4'
 gem 'sprockets-rails'
 gem 'simple_form'
 gem 'bootstrap'
+gem 'font-awesome-rails'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
