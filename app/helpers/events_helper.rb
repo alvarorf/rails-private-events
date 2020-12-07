@@ -1,4 +1,5 @@
 module EventsHelper
+
   def event_process_links(event)
     return unless logged_in? && event.creator == current_user
 
@@ -16,4 +17,5 @@ module EventsHelper
   def current_event
     @current_event ||= Event.find(session[:user_id]) if current_user
   end
+
 end

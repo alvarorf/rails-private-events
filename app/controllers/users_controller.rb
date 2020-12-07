@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
-
+  before_action :require_user, only: %i[edit update]
+  before_action :require_same_user, only: %i[edit update destroy]
   # GET /users
   # GET /users.json
   def index
@@ -9,7 +10,14 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.json
-  def show; end
+  def show
+    if logged_in?
+      @future_events = current_user.events.upcoming
+      @past_events = current_user.events.past
+    else
+      redirect_to login_path
+    end
+  end
 
   # GET /users/new
   def new
@@ -69,5 +77,16 @@ class UsersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:name, :username, :email, :password)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def require_same_user
+    return unless current_user != @user
+
+    flash[:alert] = 'You can only edit or delete your own account.'
+    redirect_to @user
   end
 end

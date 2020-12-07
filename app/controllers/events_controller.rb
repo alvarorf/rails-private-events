@@ -9,12 +9,15 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @future_events = @events.upcoming
+    @past_events = @events.past
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    @event_attendees = @event.attendees
   end
 
   # GET /events/new
@@ -23,7 +26,9 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1/edit
-  def edit; end
+  def edit
+    @event = Event.find(params[:id])
+  end
 
   # POST /events
   # POST /events.json
@@ -44,6 +49,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    @event = Event.find(params[:id])
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -58,6 +64,7 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
+    @event = Event.find(params[:id])
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
