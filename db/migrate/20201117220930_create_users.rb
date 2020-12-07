@@ -4,9 +4,11 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :username
       t.string :email
-      t.string :password
+      t.string :password_digest
 
       t.timestamps
     end
+    add_index :users, :username, unique: true
+    add_reference :events, :user, foreign_key: true
   end
 end

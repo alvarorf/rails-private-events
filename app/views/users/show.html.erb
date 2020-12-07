@@ -1,8 +1,6 @@
-
-<p id="notice"><%= notice %></p>
 <div class="container" >
   <h1 class="text-center mt-5 mb-4"><%= @user.username %>'s profile</h1>
-  <div class="center-img my-3">
+  <div class="center-img my-3"> 
     <%= gravatar_image_tag(@user, size: 200)%>
   </div>
 
@@ -55,5 +53,3 @@
 
   <% end %>
 </div>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

@@ -1,7 +1,5 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container" >
-  <h1 class="text-center mt-5 mb-4">Members</h1>
+  <h1 class="text-center mt-5 mb-4">Private Events members</h1>
     <% @users.each do |user| %>
     <div class="card text-center shadow mb-5 bg-white rounded">
       <div class="card-header font-italic">
@@ -24,7 +22,7 @@
     </div>
   <% end %>
 </div>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>
+<div class="d-flex justify-content-around">
+<%= link_to "Don't have an account? Create one", signup_url %>
+<%= link_to "Sign in", login_url %>
+</div>

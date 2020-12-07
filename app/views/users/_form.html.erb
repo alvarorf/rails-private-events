@@ -1,37 +1,23 @@
-
-
-<%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= render 'shared/errors', obj: @user %>
+<%= form_with(model: @user, local: true) do |f| %>
   <div class="form-group">
-    <label for="name"><%= form.label :name %></label>
-    <%= form.text_field :name, class: "form-control shadow rounded", id: "name", placeholder: "Enter your name" %>
+    <label for="name"><%= f.label :name %></label>
+    <%= f.text_field :name, class: "form-control shadow rounded", id: "name", placeholder: "Enter your name" %>
   </div>
   <div class="form-group">
-    <label for="username"><%= form.label :username %></label>
-    <%= form.text_field :username, class: "form-control shadow rounded", id: "username", placeholder: "Enter a username" %>
+    <label for="username"><%= f.label :username %></label>
+    <%= f.text_field :username, class: "form-control shadow rounded", id: "username", placeholder: "Enter a username" %>
     <small class="form-text text-muted">Enter your username</small>
   </div>
   <div class="form-group">
-    <label for="email"><%= form.label :email %></label>
-    <%= form.email_field :email, class: "form-control shadow rounded", id: "email", placeholder: "Enter your email address" %>
+    <label for="email"><%= f.label :email %></label>
+    <%= f.email_field :email, class: "form-control shadow rounded", id: "email", placeholder: "Enter your email address" %>
   </div>
   <div class="form-group">
-    <label for="password"><%= form.label :password %></label>
-    <%= form.password_field :password, class: "form-control shadow rounded", id: "password", placeholder: "Choose a password" %>
+    <label for="password"><%= f.label :password %></label>
+    <%= f.password_field :password, class: "form-control shadow rounded", id: "password", placeholder: "Choose a password" %>
   </div>
   <div class="my-3">
-    <%= form.submit(@user.new_record? ? "Sign up" : "Update account", class: "btn btn-primary") %>
+    <%= f.submit(@user.new_record? ? "Sign up" : "Update account", class: "btn btn-primary") %>
   </div>
-
 <% end %>

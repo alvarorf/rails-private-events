@@ -1,6 +1,4 @@
-include ApplicationHelper
 class EventsController < ApplicationController
-  helper_method :require_user, :require_same_user
   before_action :set_event, only: %i[show edit update destroy]
   before_action :require_user, except: %i[show index]
   before_action :require_same_user, only: %i[edit update destroy]
@@ -25,51 +23,39 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
-  # GET /events/1/edit
+  # POST /events
+  # POST /events.json
+  def create
+    respond_to do |format|
+      if current_user
+        @event = current_user.events.build(event_params)
+        @event.save
+        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.json { render :show, status: :created, location: @event }
+      else
+        format.html { render :new, alert: 'Please Sign In.' }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def edit
     @event = Event.find(params[:id])
   end
 
-  # POST /events
-  # POST /events.json
-  def create
-    @event = current_user.events.build(event_params)
-
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /events/1
-  # PATCH/PUT /events/1.json
   def update
     @event = Event.find(params[:id])
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    if @event.update(event_params)
+      redirect_to @event, notice: 'Your event was updated'
+    else
+      render :edit
     end
   end
 
-  # DELETE /events/1
-  # DELETE /events/1.json
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to events_path
   end
 
   private
@@ -81,6 +67,13 @@ class EventsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def event_params
-    params.require(:event).permit(:name, :date, :location, :description)
+    params.require(:event).permit(:title, :date, :location, :description)
+  end
+
+  def require_same_user
+    return unless current_user != @event.creator
+
+    flash[:alert] = 'You can only edit or delete your own event.'
+    redirect_to @event
   end
 end

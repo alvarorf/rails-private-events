@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  resources :attendances
-  root to: "events#index"
   resources :events
-  resources :users
+  resources :attendances
+  root to: 'users#index'
+
+  get 'signup', to: 'users#new'
+  resources :users, except: [:new]
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
-  get 'new_user', to: 'users#create'
   delete 'logout', to: 'sessions#destroy'
+
+  get '/buy/:user_id/:event_id', to: 'attendances#buy'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
