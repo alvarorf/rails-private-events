@@ -6,7 +6,7 @@ class User < ApplicationRecord
     with: URI::MailTo::EMAIL_REGEXP
   }
   validates :password, presence: true, length: { in: 8..30 }
-  has_many :created_events, foreign_key: 'creator_id', class_name: 'Event'
-  has_many :attendances, foreign_key: 'attendee_id'
+  has_many :created_events, foreign_key: 'creator_id', class_name: 'Event', dependent: :destroy
+  has_many :attendances, foreign_key: 'attendee_id', dependent: :destroy
   has_many :attended_events, through: :attendances
 end
