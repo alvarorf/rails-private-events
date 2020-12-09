@@ -6,7 +6,7 @@ class User < ApplicationRecord
     with: URI::MailTo::EMAIL_REGEXP
   }
   has_secure_password
-  has_many :events, dependent: :destroy
+  has_many :events, dependent: :destroy, foreign_key: :user_id
   has_many :attendances, dependent: :destroy
   has_many :attended_events, through: :attendances, source: :event
 end
