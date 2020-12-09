@@ -19,4 +19,3 @@ class SessionsController < ApplicationController
     redirect_to users_path
   end
 end
-

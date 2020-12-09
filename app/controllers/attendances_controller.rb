@@ -75,4 +75,3 @@ class AttendancesController < ApplicationController
     params.require(:attendance).permit(:user_id, :event_id)
   end
 end
-
