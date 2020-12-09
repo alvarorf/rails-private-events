@@ -7,8 +7,8 @@ class UsersController < ApplicationController
     redirect_to login_path unless logged_in?
 
     @attended_events = current_user.event_attended
-    @future_events = current_user.created_events.future
-    @past_events = current_user.created_events.past
+    @future_events = current_user.events.upcoming
+    @past_events = current_user.events.past
   end
 
   def index
