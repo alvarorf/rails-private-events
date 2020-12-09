@@ -4,13 +4,11 @@ class UsersController < ApplicationController
   before_action :require_same_user, only: %i[edit update destroy]
 
   def show
-    if logged_in?
-      @attended_events = current_user.event_attended
-      @future_events = current_user.attended_events.upcoming
-      @past_events = current_user.attended_events.previous
-    else
-      redirect_to login_path
-    end
+    redirect_to login_path unless logged_in?
+
+    @attended_events = current_user.event_attended
+    @future_events = current_user.created_events.future
+    @past_events = current_user.created_events.past
   end
 
   def index
