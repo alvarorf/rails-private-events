@@ -6,9 +6,11 @@ class UsersController < ApplicationController
   def show
     redirect_to login_path unless logged_in?
 
-    @attended_events = current_user.event_attended
+    @created_events = current_user.events #Suggested by TSE
+    #@attended_events = current_user.attendances.attended_events
+    #@created_events = current_user.events.attended
     @future_events = current_user.events.upcoming
-    @past_events = current_user.events.past
+    @past_events = current_user.attended_events.past
   end
 
   def index
