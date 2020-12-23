@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
-  before_action :require_user, except: %i[show index]
   before_action :require_same_user, only: %i[edit update destroy]
 
   # GET /events
