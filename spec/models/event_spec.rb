@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
   describe '#Validations' do
-    let(:user) { User.new(name: 'name', username: 'username', id: 3) }
-    let(:event1) { Event.new(title: 'Independencia') }
+    let(:user) { User.new(name: 'name', username: 'username', id: 3, email: 'example@example.com') }
+    let(:event1) { Event.new(title: 'Independencia', description: '...', location: 'Somewhere') }
 
     it 'Event is valid with all attributes' do
-      expect(Event.new(title: 'Independencia', date: Date.tomorrow, creator: user)).to be_valid
+      expect(Event.new(title: 'Independencia', description: '...', location: 'Somewhere', date: Date.tomorrow, creator: user)).to be_valid
     end
 
     it 'Event is invalid due to empty attributes' do
