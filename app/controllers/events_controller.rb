@@ -4,7 +4,6 @@ class EventsController < ApplicationController
   before_action :require_same_user, only: %i[edit update destroy]
 
   # GET /events
-  # GET /events.json
   def index
     @future_events = Event.upcoming
     @past_events = Event.past
@@ -13,7 +12,6 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1
-  # GET /events/1.json
   def show
     @event = Event.find(params[:id])
     @event_attendees = @event.attendees
@@ -25,17 +23,14 @@ class EventsController < ApplicationController
   end
 
   # POST /events
-  # POST /events.json
   def create
     respond_to do |format|
       if current_user
         @event = current_user.events.build(event_params)
         @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new, alert: 'Please Sign In.' }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
   end
