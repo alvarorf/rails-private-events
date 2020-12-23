@@ -15,8 +15,8 @@
 
 ### Built With
 
-- Ruby
-- Ruby on Rails
+- Ruby 2.7.2
+- Rails 6.0.3
 - Rubocop
 - Visual Studio Code
 - Bootstrap
@@ -32,10 +32,14 @@ Assuming that `Bundler` is installed, you can continue with the following steps:
 - Step 2: Open the project folder where the repository was downloaded. Once you are in that folder, open a terminal and make sure that it will be opened in that specific folder.
 - Step 3: Once you are in the terminal, just type in: `bundle install`. This will install the required dependencies for this project.
 - Step 4: Now, type in: `yarn install --check-files` to install some necessary packages.
-- Step 4: (Optional) You may need to run the migrations. To do this, while in the project root folder type in: `rails db:migrate`.
-- Step 5: Now, to try the project type in: `rails server` and then go to `localhost:3000`. There, you will be able to see the home page, which is the list of members. Since there are no members, you will have to register and then you can create events and create attendances to them.
+- Step 5: (Optional) You may need to run the migrations. To do this, while in the project root folder type in: `rails db:migrate`.
+- Step 6: Now, to try the project type in: `rails server` and then go to `localhost:3000`. There, you will be able to see the home page, which is the list of members. Since there are no members, you will have to register and then you can create events and create attendances to them.
 
-### Authors
+### Testing
+
+The project uses the `Rspec` framework for testing and the tests are in the `/spec` folder. If you want to see the results of the tests, you can just type in the terminal (while being in the root directory and after running at least steps 1 to 4 in the setup) `rspec`.
+
+### Author
 
 👤 **Alvaro Ruiz**
 
