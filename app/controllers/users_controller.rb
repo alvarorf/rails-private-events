@@ -12,11 +12,11 @@ class UsersController < ApplicationController
     else
       redirect_to login_path
     end
-    #redirect_to login_path unless logged_in?
+    # redirect_to login_path unless logged_in?
 
-    #@created_events = current_user.events.upcoming #Suggested by TSE
-    #@attended_events = current_user.attendances.attended_events
-    #@created_events = current_user.events.attended
+    # @created_events = current_user.events.upcoming #Suggested by TSE
+    # @attended_events = current_user.attendances.attended_events
+    # @created_events = current_user.events.attended
     # @future_events = current_user.events.upcoming
     # @past_events = current_user.attended_events.past
   end
