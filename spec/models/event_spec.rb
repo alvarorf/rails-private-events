@@ -6,7 +6,9 @@ RSpec.describe Event, type: :model do
     let(:event1) { Event.new(title: 'Independencia', description: '...', location: 'Somewhere') }
 
     it 'Event is valid with all attributes' do
-      expect(Event.new(title: 'Independencia', description: '...', location: 'Somewhere', date: Date.tomorrow, creator: user)).to be_valid
+      expect(Event.new(
+               title: 'Independencia', description: '...', location: 'Somewhere', date: Date.tomorrow, creator: user
+             )).to be_valid
     end
 
     it 'Event is invalid due to empty attributes' do
