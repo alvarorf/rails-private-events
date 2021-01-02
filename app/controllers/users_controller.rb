@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if logged_in?
       @created_events = current_user.events
 
-      @future_events = current_user.events.upcoming
+      @future_events = current_user.attended_events.upcoming
       @past_events = current_user.attended_events.past
     else
       redirect_to login_path

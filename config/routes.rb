@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :attendances
   root to: 'users#index'
 
-  get 'signup', to: 'users#new'
+  get 'signup', to: 'users#new' #, as: 'new_user_path'
   resources :users, except: [:new]
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
