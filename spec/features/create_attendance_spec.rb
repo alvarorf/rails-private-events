@@ -43,5 +43,4 @@ RSpec.describe 'Create attendance to event from logged in user', type: :feature 
     click_link 'Back'
     expect(page).to_not have_content 'Attendance was successfully created.'
   end
-
 end
