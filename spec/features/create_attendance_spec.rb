@@ -15,7 +15,8 @@ RSpec.describe 'Create attendance to event from logged in user', type: :feature 
     fill_in 'event[location]', with: 'somewhere in the multiverse'
     fill_in 'event[description]', with: 'This is a sample event'
     click_button 'Create Event'
-    Event.create(title: 'sample event', date: '2021-02-30', location: 'somewhere in the multiverse', description: 'This is a sample event')
+    Event.create(title: 'sample event', date: '2021-02-30',
+                 location: 'somewhere in the multiverse', description: 'This is a sample event')
     visit new_attendance_url
     find('#attendance_event_id').find(:xpath, 'option[1]').select_option
     click_button 'Create Attendance'

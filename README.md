@@ -18,6 +18,7 @@
 - Ruby 2.7.2
 - Rails 6.0.3
 - Rubocop
+- Capybara and Rspec for resting
 - Visual Studio Code
 - Bootstrap
 - Stylelint
