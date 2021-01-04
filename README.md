@@ -11,6 +11,8 @@
 
 ![Create Event](/images/CreateEvent.png)
 
+![Rspec](/images/rspec-tests.png)
+
 > Welcome to my **Private Events** project built mainly with `Ruby` and `Ruby on Rails`. The main purpose of this project is to implement a system where users can create and attend events. Basic CRUD operations and an authentication system is implemented.
 
 ### Built With
